@@ -1,0 +1,22 @@
+version: '3.5'
+services:
+  vault-server:
+    image: "vault:latest"
+    container_name: vault-server
+    ports:
+      - "8200:8200"
+    volumes:
+      - /home/dnabiev/vault-docker/server:/vault/config:ro
+      - /home/dnabiev/vault-docker/server:/vault/file:rw
+      - /home/dnabiev/vault-docker/server:/var/log/vault:rw
+    cap_add:
+      - IPC_LOCK
+    entrypoint: vault server -config=/vault/config/server.conf 
+    networks:
+      net1:
+          aliases:
+            - vault-server     
+networks:
+  net1:
+    name: test
+

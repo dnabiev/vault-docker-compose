@@ -1,0 +1,17 @@
+version: '3.5'
+services:
+  app:
+    image: "app:v1"
+    container_name: app
+    volumes:
+      - /home/dnabiev/vault-docker/app:/vault/config:rw
+      - /home/dnabiev/vault-docker/app:/var/log/vault:rw
+    cap_add:
+     - IPC_LOCK
+    networks:
+      net1:
+          aliases:
+            - app  
+networks:
+  net1:
+    name: test
