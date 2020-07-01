@@ -3,11 +3,8 @@ services:
   vault-agent:
     image: "vault:latest"
     container_name: vault-agent
-    ports:
-          - "8300:8300"
     volumes:
       - /home/dnabiev/vault-docker/agent:/vault/config:rw
-      - /home/dnabiev/vault-docker/agent:/vault/file:rw
       - /home/dnabiev/vault-docker/agent:/var/log/vault:rw
     cap_add:
     - IPC_LOCK
